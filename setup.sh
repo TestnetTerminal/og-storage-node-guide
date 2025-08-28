@@ -476,7 +476,7 @@ download_snapshot() {
     
     # Download first part
     print_status "📥 Downloading part 1/2..."
-    if ! wget -q --show-progress https://github.com/amibunny/0g-storage-node-guide/releases/download/snapshot-block-5611223/flow_db.part-aa; then
+    if ! wget -q --show-progress https://github.com/TestnetTerminal/og-storage-node-guide/releases/download/snapshot-block-5611223/flow_db.part-aa; then
         print_error "❌ Failed to download snapshot part 1"
         print_status "🔄 Restarting ZGS service..."
         sudo systemctl start zgs
@@ -486,7 +486,7 @@ download_snapshot() {
     
     # Download second part
     print_status "📥 Downloading part 2/2..."
-    if ! wget -q --show-progress https://github.com/amibunny/0g-storage-node-guide/releases/download/snapshot-block-5611223/flow_db.part-ab; then
+    if ! wget -q --show-progress https://github.com/TestnetTerminal/og-storage-node-guide/releases/download/snapshot-block-5611223/flow_db.part-ab; then
         print_error "❌ Failed to download snapshot part 2"
         print_status "🔄 Restarting ZGS service..."
         sudo systemctl start zgs
