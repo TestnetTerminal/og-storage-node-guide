@@ -65,14 +65,16 @@ Select an option (1-4):
 ```bash
 # Check status
 sudo systemctl status zgs
-
+```
+```bash
 # View logs
 tail -f ~/0g-storage-node/run/log/zgs.log.$(TZ=UTC date +%Y-%m-%d)
-
-# Check sync status
-curl -X POST http://localhost:5678 -H "Content-Type: application/json" \
-  -d '{"jsonrpc":"2.0","method":"zgs_getStatus","params":[],"id":1}'
 ```
+```bash
+# Check sync status
+bash <(curl -s https://raw.githubusercontent.com/TestnetTerminal/og-storage-node-guide/main/rpc.sh)
+```
+
 
 ## 📥 Snapshot Benefits
 
