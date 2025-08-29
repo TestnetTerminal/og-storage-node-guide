@@ -16,17 +16,18 @@ while true; do
 
     # Calculate difference
     diff=$((logSyncHeight - remote_block))
+    behind=$((remote_block - logSyncHeight))
 
     # Determine status
-    if [ "$diff" -eq 0 ]; then
-        status="✅ Synced"
-        color="\033[32m"
-    elif [ "$diff" -lt 0 ]; then
-        status="⏳ Behind by $((-diff)) blocks"
-        color="\033[33m"
-    else
+    if [ "$diff" -ge 0 ]; then
         status="⚡ Ahead by $diff blocks"
         color="\033[36m"
+    elif [ "$behind" -le 15 ]; then
+        status="✅ Synced (≤15 blocks behind)"
+        color="\033[32m"
+    else
+        status="⏳ Behind by $behind blocks"
+        color="\033[33m"
     fi
 
     # Print the result
