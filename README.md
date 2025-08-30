@@ -11,7 +11,7 @@
 bash <(curl -s https://raw.githubusercontent.com/TestnetTerminal/og-storage-node-guide/main/setup.sh)
 ```
 
-**📺 Video Tutorial**: [Watch on X](https://x.com/TestnetTerminal)
+**📺 Video Tutorial**: [Watch on X](https://x.com/TestnetTerminal) (comming soon)
 
 ## 🎯 What This Does
 
