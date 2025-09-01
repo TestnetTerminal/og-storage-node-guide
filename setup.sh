@@ -487,6 +487,10 @@ download_snapshot() {
     print_status "📦 Extracting snapshot..."
     tar --zstd -xvf flow_db_snapshot.tar.zst -C "$HOME/0g-storage-node/run/db/"
 
+    print_status "🧹 Cleaning up snapshot file to save space..."
+    rm -f flow_db_snapshot.tar.zst
+    print_success "✅ Snapshot file removed to save disk space"
+
     print_status "🚀 Restarting ZGS service..."
     sudo systemctl restart zgs
 
@@ -505,13 +509,13 @@ download_snapshot() {
         print_success "🎉 Snapshot installation completed successfully!"
         echo ""
         echo -e "${GREEN}╔══════════════════════════════════════════════════════════════════╗${NC}"
-        echo -e "${GREEN}║                      🎊 All Done! 🎊                            ║${NC}"
+        echo -e "${GREEN}║                      🎊 All Done! 🎊                           ║${NC}"
         echo -e "${GREEN}╚══════════════════════════════════════════════════════════════════╝${NC}"
         echo ""
         echo -e "${CYAN}✅ Your 0G Storage Node is now running from block 5,822,656!${NC}"
         echo ""
-        echo -e "${PURPLE}🤖 Get Transaction & Reward Notifications:${NC}"
-        echo -e "${BLUE}📱 Telegram Bot: ${NC}https://t.me/og_tracker_bot"
+        echo -e "${YELLOW}🤖 Get Transaction & Reward Notifications:${NC}"
+        echo -e "${YELLOW}📱 Telegram Bot: ${NC}https://t.me/og_tracker_bot"
         echo ""
         echo -e "${GREEN}🙏 Thank you for using Testnet Terminal's OneClick Setup!${NC}"
         echo ""
@@ -527,11 +531,7 @@ download_snapshot() {
     else
         print_warning "⚠️ Could not verify sync status. Please check manually."
     fi
-
-    # Clean up
-    print_status "🧹 Cleaning up snapshot files..."
-    rm -rf "$HOME/snapshots"
-
+    
     echo ""
     read -p "Press Enter to return to main menu..."
 }
