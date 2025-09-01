@@ -16,7 +16,7 @@ bash <(curl -s https://raw.githubusercontent.com/TestnetTerminal/og-storage-node
 ## 🎯 What This Does
 
 - **🛠️ Auto Installation**: Installs all dependencies, builds node, creates systemd service
-- **📥 Snapshot Support**: Download pre-synced data (block 5,611,223) - saves 4-5 days
+- **📥 Snapshot Support**: Download pre-synced data (block 5,822,656) - saves 4-5 days
 - **🔧 Easy Management**: Install, delete, or download snapshot via interactive menu
 - **🔒 Secure**: Private key stored locally only, never transmitted anywhere
 
