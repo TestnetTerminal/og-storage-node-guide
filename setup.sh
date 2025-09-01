@@ -303,7 +303,7 @@ EOF
         echo -e "${GREEN}We recommend downloading a snapshot for faster sync!${NC}"
         echo ""
         echo -e "${YELLOW}Choose an option:${NC}"
-        echo -e "${GREEN}A) Download snapshot (recommended - starts from block 5,611,223)${NC}"
+        echo -e "${GREEN}A) Download snapshot (recommended - starts from block 5,822,656)${NC}"
         echo -e "${BLUE}B) Continue from scratch (slower but complete sync)${NC}"
         echo ""
         echo -n -e "${WHITE}Your choice (A/B): ${NC}"
@@ -472,33 +472,20 @@ download_snapshot() {
     cd "$HOME/snapshots"
 
     print_status "📥 Downloading snapshot parts (this may take a while)..."
-    echo -e "${CYAN}📊 Snapshot info: Block 5,611,223 | Size: ~several GB${NC}"
+    echo -e "${CYAN}📊 Snapshot info: Block 5,822,656 | Size: ~several GB${NC}"
     
-    # Download first part
-    print_status "📥 Downloading part 1/2..."
-    if ! wget -q --show-progress https://github.com/TestnetTerminal/og-storage-node-guide/releases/download/snapshot-block-5611223/flow_db.part-aa; then
-        print_error "❌ Failed to download snapshot part 1"
+    # Download snapshot
+    print_status "📥 Downloading snapshot (single file)..."
+    if ! wget -q --show-progress https://github.com/TestnetTerminal/og-storage-node-guide/releases/download/flow_db/flow_db_snapshot.tar.zst; then
+        print_error "❌ Failed to download snapshot"
         print_status "🔄 Restarting ZGS service..."
         sudo systemctl start zgs
         read -p "Press Enter to return to main menu..."
         return
     fi
-    
-    # Download second part
-    print_status "📥 Downloading part 2/2..."
-    if ! wget -q --show-progress https://github.com/TestnetTerminal/og-storage-node-guide/releases/download/snapshot-block-5611223/flow_db.part-ab; then
-        print_error "❌ Failed to download snapshot part 2"
-        print_status "🔄 Restarting ZGS service..."
-        sudo systemctl start zgs
-        read -p "Press Enter to return to main menu..."
-        return
-    fi
-
-    print_status "🔗 Combining snapshot parts..."
-    cat flow_db.part-* > flow_db.tar.xz
 
     print_status "📦 Extracting snapshot..."
-    tar -xJvf flow_db.tar.xz -C "$HOME/0g-storage-node/run/db/"
+    tar --zstd -xvf flow_db_snapshot.tar.zst -C "$HOME/0g-storage-node/run/db/"
 
     print_status "🚀 Restarting ZGS service..."
     sudo systemctl restart zgs
@@ -512,7 +499,7 @@ download_snapshot() {
     if check_block_sync; then
         echo ""
         # Monitor sync and auto-stop when reached snapshot block
-        monitor_block_sync_live 5611223
+        monitor_block_sync_live 5822656
         
         echo ""
         print_success "🎉 Snapshot installation completed successfully!"
@@ -521,7 +508,7 @@ download_snapshot() {
         echo -e "${GREEN}║                      🎊 All Done! 🎊                            ║${NC}"
         echo -e "${GREEN}╚══════════════════════════════════════════════════════════════════╝${NC}"
         echo ""
-        echo -e "${CYAN}✅ Your 0G Storage Node is now running from block 5,611,223!${NC}"
+        echo -e "${CYAN}✅ Your 0G Storage Node is now running from block 5,822,656!${NC}"
         echo ""
         echo -e "${PURPLE}🤖 Get Transaction & Reward Notifications:${NC}"
         echo -e "${BLUE}📱 Telegram Bot: ${NC}https://t.me/og_tracker_bot"
