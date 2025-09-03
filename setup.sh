@@ -232,11 +232,37 @@ install_og_storage_node() {
     echo -e "${YELLOW}💡 Your private key will be securely added to config.toml${NC}"
     echo ""
     echo -n -e "${WHITE}Enter Private Key: ${NC}"
-    read -r -s PRIVATE_KEY
+    read -r PRIVATE_KEY
     echo ""
-    
+
     if [ -z "$PRIVATE_KEY" ]; then
         print_error "❌ Private key cannot be empty!"
+        read -p "Press Enter to return to main menu..."
+        return
+    fi
+
+    # Display masked private key for confirmation
+    if [ ${#PRIVATE_KEY} -gt 7 ]; then
+        first_3="${PRIVATE_KEY:0:3}"
+        last_4="${PRIVATE_KEY: -4}"
+        middle_length=$((${#PRIVATE_KEY} - 7))
+        middle_mask=$(printf "%*s" $middle_length | tr ' ' '*')
+        masked_key="${first_3}${middle_mask}${last_4}"
+        echo -e "${CYAN}✅ Private Key Preview: ${NC}${masked_key}"
+        echo ""
+        echo -n -e "${WHITE}Is this correct? (y/N): ${NC}"
+        read -r key_confirm
+        case "${key_confirm,,}" in
+            y|yes)
+                ;;
+            *)
+                print_status "❌ Private key confirmation cancelled"
+                read -p "Press Enter to return to main menu..."
+                return
+                ;;
+        esac
+    else
+        print_error "❌ Private key too short (minimum 8 characters required)!"
         read -p "Press Enter to return to main menu..."
         return
     fi
