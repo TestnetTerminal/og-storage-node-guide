@@ -121,7 +121,7 @@ check_block_sync() {
 
 # Function to monitor block sync with your specific command format
 monitor_block_sync_live() {
-    local target_block=${1:-5611223}
+    local target_block=${1:-5822756}
     local stop_monitoring=false
     
     echo -e "${CYAN}🔄 Monitoring block sync (will auto-stop at block $target_block)...${NC}"
@@ -467,7 +467,7 @@ download_snapshot() {
             if [ "$logSyncHeight" -gt 4000000 ]; then
                 echo ""
                 print_warning "⚠️ Your node has already synced to block $logSyncHeight"
-                echo -e "${YELLOW}The snapshot starts from block 5,611,223${NC}"
+                echo -e "${YELLOW}The snapshot starts from block 5,822,656${NC}"
                 echo -e "${CYAN}In 1-2 days, you'll naturally reach that block anyway.${NC}"
                 echo ""
                 echo -n -e "${WHITE}Are you sure you want to delete current progress and use snapshot? (y/N): ${NC}"
@@ -492,10 +492,6 @@ download_snapshot() {
 
     print_status "🗑️ Removing current flow_db..."
     rm -rf "$HOME/0g-storage-node/run/db/flow_db"
-
-    print_status "📁 Creating snapshots directory..."
-    mkdir -p "$HOME/snapshots"
-    cd "$HOME/snapshots"
 
     print_status "📥 Downloading snapshot parts (this may take a while)..."
     echo -e "${CYAN}📊 Snapshot info: Block 5,822,656 | Size: ~several GB${NC}"
@@ -529,7 +525,7 @@ download_snapshot() {
     if check_block_sync; then
         echo ""
         # Monitor sync and auto-stop when reached snapshot block
-        monitor_block_sync_live 5822656
+        monitor_block_sync_live 5822756
         
         echo ""
         print_success "🎉 Snapshot installation completed successfully!"
