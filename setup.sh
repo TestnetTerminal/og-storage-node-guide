@@ -121,7 +121,7 @@ check_block_sync() {
 
 # Function to monitor block sync with your specific command format
 monitor_block_sync_live() {
-    local target_block=${1:-5967000}
+    local target_block=${1:-5966400}
     local stop_monitoring=false
     
     echo -e "${CYAN}🔄 Monitoring block sync (will auto-stop at block $target_block)...${NC}"
@@ -526,7 +526,7 @@ download_snapshot() {
     if check_block_sync; then
         echo ""
         # Monitor sync and auto-stop when reached snapshot block
-        monitor_block_sync_live 5967000
+        monitor_block_sync_live 5966400
         
         echo ""
         print_success "🎉 Snapshot installation completed successfully!"
