@@ -121,7 +121,7 @@ check_block_sync() {
 
 # Function to monitor block sync with your specific command format
 monitor_block_sync_live() {
-    local target_block=${1:-5822756}
+    local target_block=${1:-5967000}
     local stop_monitoring=false
     
     echo -e "${CYAN}🔄 Monitoring block sync (will auto-stop at block $target_block)...${NC}"
@@ -329,7 +329,7 @@ EOF
         echo -e "${GREEN}We recommend downloading a snapshot for faster sync!${NC}"
         echo ""
         echo -e "${YELLOW}Choose an option:${NC}"
-        echo -e "${GREEN}A) Download snapshot (recommended - starts from block 5,822,656)${NC}"
+        echo -e "${GREEN}A) Download snapshot (recommended - starts from block 5,966,000)${NC}"
         echo -e "${BLUE}B) Continue from scratch (slower but complete sync)${NC}"
         echo ""
         echo -n -e "${WHITE}Your choice (A/B): ${NC}"
@@ -358,6 +358,7 @@ EOF
     echo -e "${YELLOW}sudo systemctl status zgs${NC}          # Check service status"
     echo -e "${YELLOW}sudo systemctl restart zgs${NC}         # Restart service"
     echo -e "${YELLOW}tail -f ~/0g-storage-node/run/log/zgs.log.\$(TZ=UTC date +%Y-%m-%d)${NC}  # View logs"
+    echo -e "${YELLOW}bash <(curl -s https://raw.githubusercontent.com/TestnetTerminal/og-storage-node-guide/main/rpc.sh)${NC}  # View block sync"
     echo ""
     echo -e "${PURPLE}🤖 Get Transaction & Reward Notifications:${NC}"
     echo -e "${BLUE}📱 Telegram Bot: ${NC}https://t.me/og_tracker_bot"
@@ -464,10 +465,10 @@ download_snapshot() {
             echo -e "${CYAN}📊 Current sync block: ${NC}$logSyncHeight"
             
             # Check if already past snapshot block
-            if [ "$logSyncHeight" -gt 4000000 ]; then
+            if [ "$logSyncHeight" -gt 5000000 ]; then
                 echo ""
                 print_warning "⚠️ Your node has already synced to block $logSyncHeight"
-                echo -e "${YELLOW}The snapshot starts from block 5,822,656${NC}"
+                echo -e "${YELLOW}The snapshot starts from block 5,966,000${NC}"
                 echo -e "${CYAN}In 1-2 days, you'll naturally reach that block anyway.${NC}"
                 echo ""
                 echo -n -e "${WHITE}Are you sure you want to delete current progress and use snapshot? (y/N): ${NC}"
@@ -494,7 +495,7 @@ download_snapshot() {
     rm -rf "$HOME/0g-storage-node/run/db/flow_db"
 
     print_status "📥 Downloading snapshot parts (this may take a while)..."
-    echo -e "${CYAN}📊 Snapshot info: Block 5,822,656 | Size: ~several GB${NC}"
+    echo -e "${CYAN}📊 Snapshot info: Block 5,966,000 | Size: ~several GB${NC}"
     
     # Download snapshot
     print_status "📥 Downloading snapshot (single file)..."
@@ -525,7 +526,7 @@ download_snapshot() {
     if check_block_sync; then
         echo ""
         # Monitor sync and auto-stop when reached snapshot block
-        monitor_block_sync_live 5822756
+        monitor_block_sync_live 5967000
         
         echo ""
         print_success "🎉 Snapshot installation completed successfully!"
@@ -534,7 +535,7 @@ download_snapshot() {
         echo -e "${GREEN}║                      🎊 All Done! 🎊                           ║${NC}"
         echo -e "${GREEN}╚══════════════════════════════════════════════════════════════════╝${NC}"
         echo ""
-        echo -e "${CYAN}✅ Your 0G Storage Node is now running from block 5,822,656!${NC}"
+        echo -e "${CYAN}✅ Your 0G Storage Node is now running from block 5,966,000!${NC}"
         echo ""
         echo -e "${YELLOW}🤖 Get Transaction & Reward Notifications:${NC}"
         echo -e "${YELLOW}📱 Telegram Bot: ${NC}https://t.me/og_tracker_bot"
