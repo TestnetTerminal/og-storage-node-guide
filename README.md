@@ -90,14 +90,14 @@ bash <(curl -s https://raw.githubusercontent.com/TestnetTerminal/og-storage-node
 
 ## 🤝 Support
 
-- **💬 Support**: [@Amit3701](https://t.me/Amit3701)
-- **📱 Community**: [@TestnetTerminal](https://t.me/TestnetTerminal)
-- **🐦 Twitter/X**: [@TestnetTerminal](https://x.com/TestnetTerminal)
-- **🤖 Tracker Bot**: [@og_tracker_bot](https://t.me/og_tracker_bot)
+- **💬 Support**: <a href="https://t.me/Amit3701" target="_blank" rel="noopener noreferrer">@Amit3701</a>
+- **📱 Community**: <a href="https://t.me/TestnetTerminal" target="_blank" rel="noopener noreferrer">@TestnetTerminal</a>
+- **🐦 Twitter/X**: <a href="https://x.com/TestnetTerminal" target="_blank" rel="noopener noreferrer">@TestnetTerminal</a>
+- **🤖 Tracker Bot**: <a href="https://t.me/og_tracker_bot" target="_blank" rel="noopener noreferrer">@og_tracker_bot</a>
 
 ## 🔍 Alternative RPC
 
-Get other RPC endpoints: https://astrostake.xyz/networks/0g-labs/endpoints-status
+Get other RPC endpoints: <a href="https://astrostake.xyz/networks/0g-labs/endpoints-status" target="_blank" rel="noopener noreferrer">https://astrostake.xyz/networks/0g-labs/endpoints-status</a>
 
 ---
 
